@@ -8,31 +8,37 @@ import "jest-dom/extend-expect";
 afterEach(cleanup);
 
 describe("<Display />", () => {
-  it("renders successfully", () => {
+  it("should render successfully", () => {
     render(<Display />);
   });
 
   it("should display unlocked on default", () => {
     const { getByText } = render(<Display />);
-
     getByText(/unlocked/i);
   });
 
   it("should display open on default", () => {
     const { getByText } = render(<Display />);
-
     getByText(/open/i);
   });
 
   it("should display closed if closed prop is true", () => {
     const { getByText } = render(<Display closed={true} />);
-
     getByText(/closed/i);
   });
 
   it("should display open if closed prop is false", () => {
     const { getByText } = render(<Display closed={false} />);
-
     getByText(/open/i);
+  });
+
+  it("should display locked if locked prop is true", () => {
+    const { getByText } = render(<Display locked={true} />);
+    getByText(/locked/i);
+  });
+
+  it("should display unlocked if locked prop is false", () => {
+    const { getByText } = render(<Display locked={false} />);
+    getByText(/unlocked/i);
   });
 });
