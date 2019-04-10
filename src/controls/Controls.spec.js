@@ -29,9 +29,18 @@ describe("<Controls />", () => {
   });
 
   it("should display enabled 'lock gate' button after closing gate", () => {
-    const { getByText } = render(<Controls />);
-    fireEvent.click(getByText(/close gate/i));
-    // getByText(/open gate/i);
-    // expect(getByText(/lock gate/i)).toBeDisabled();
+    const { getByText } = render(<Controls closed={true} />);
+    // fireEvent.click(getByText(/close gate/i));
+    expect(getByText(/lock gate/i)).toBeEnabled();
+  });
+
+  it("should display disabled 'open gate' button after locking gate", () => {
+    const { getByText } = render(<Controls closed={true} locked={true} />);
+    expect(getByText(/open gate/i)).toBeDisabled();
+  });
+
+  it("should display enabled 'unlock gate' button after locking gate", () => {
+    const { getByText } = render(<Controls closed={true} locked={true} />);
+    expect(getByText(/unlock gate/i)).toBeEnabled();
   });
 })
